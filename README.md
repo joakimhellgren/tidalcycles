@@ -1,8 +1,6 @@
 # tidalcycles
 
-Download the environment to get started
-Tidal cycles: https://tidalcycles.org/index.php/Installation
-Hydra (atom package): https://atom.io/packages/atom-hydra
+Download the environment to get started https://tidalcycles.org/index.php/Installation & https://atom.io/packages/atom-hydra
 
 1. For midi: turn on the IAC-driver in macOS (Audio MIDI setup)
 2. Start SuperCollider and open up
