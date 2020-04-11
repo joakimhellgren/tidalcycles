@@ -1,0 +1,8 @@
+-- custom functions for Tidalcycles
+
+let skrrt a b p = within (0.25, 0.75) (slow 2 . stutWith 8 (b/(-8)) (|* gain a)) p
+    brap sampleName = density 8 $s sampleName #unit "c" #speed 8
+    stfu = degradeBy 1
+    elevate p = always ((#hpf 350) . (#hpq 0.12)) p
+    plyme plyTime p = plyWith plyTime ((|* gain 0.9) . (#speed "-1")) p
+    lööp len sampleName = loopAt len $chop 16 $s sampleName
