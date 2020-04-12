@@ -1,20 +1,8 @@
+do
+  p i $stack [
+        stutWith 16 (1/12) (|* gain 0.9)
+        $striate' "<32 12 64>*2" (1/8)
+        $s "cloud-prc-h:30(3,8)"
+      ]
+
 hush
-
-setcps 0.6125
-
-d1
-$stack [
-  lööp "8" "cloud-music-l:34" #room 0.4 #size 0.85 #orbit 0
-  , struct "1" "bd:53" #orbit 1
-]
-
-d2
-$stack [
-  s "midi" #note "0 1 2 3" #midichan "0"
-]
-
-
-
-
-
--- splice 16 "0 1 [6] 3" $s "cloud-drum-l:21" #cut 1
