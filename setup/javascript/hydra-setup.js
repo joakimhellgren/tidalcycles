@@ -1,4 +1,4 @@
-// Hydra SuperCollider integration 
+// Hydra SuperCollider integration
 // https://github.com/ojack/hydra-examples/blob/master/8-osc-tidal-supercollider.js
 
 // Forwarding tidal messages from supercollider to hydra.
@@ -44,7 +44,7 @@ msg.on('/play2', (args) => {
 // EXAMPLE USING TIDAL "sd" and "bd" to control hydra
 
 // define a variable to contain a blend value
-blend = 0
+trip = 0
 //
 
 // receive args from supercollider in hydra. Tidal sends OSC messages
@@ -58,13 +58,13 @@ msg.on('/play2', (args) => {
     //
     // If the tidal sample is "sd", set blend to 0, if it is bd, set blend to 1
     //
-     if(tidal.s === "sd"){
-         blend = 0
-     } else if (tidal.s === "bd"){
-         blend = 1
+     if(tidal.s === "pc"){
+         trip += 0.125
+     } else if (tidal.s === "cloud-atmo-l"){
+         trip = 0
      }
      //
-  }, tidal.delta * 1000)
+  }, tidal.delta * 100)
 })
 
 // use the variable "blend" in a hydra function
@@ -98,10 +98,38 @@ msg.on('/play2', (args) => {
         // add 1 to num
          numSides = numSides + 1
      }
-  }, (tidal.delta - tidal.latency) * 1000)
+  }, (tidal.delta - tidal.latency) * 1200)
 })
 
 // use the variables freq and numSides in hydra
 osc(() => freq, 0.0, 0.8)
   .kaleid(() => numSides)
   .out()
+
+
+
+mod1 = 0;
+mod2 = 0;
+modCount1 = 0;
+modCount2 = 0;
+
+
+  msg.on('/play2', (args) => {
+   var tidal = parseTidal(args)
+    setTimeout(() => {
+       if(tidal.s === "pc"){
+           trip += 0.125
+       } else if (tidal.s === "cloud-atmo-l"){
+           trip = 0
+       }
+       //
+    }, tidal.delta * 100)
+  })
+
+
+
+
+
+osc(1,0.1,0.4)
+  .modulate(noise(() => trip))
+    .out()
